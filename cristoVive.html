@@ -63,7 +63,22 @@
             <p class="reveal" data-dir="right"><strong>"Guardará o trigo no depósito" → O trigo representa as pessoas que seguem a vontade de Deus (os justos) E o "depósito" simboliza o céu, a presença de Deus "Mas queimará a palha no fogo que nunca se apaga" → A palha representa as pessoas que rejeitam a Deus, sem futos, vazias como palha. E o "fogo eterno" é uma referência clara ao inferno, a condenação final. </strong></p>
         </section>
     </main>
-    
+    <section id="testemunhos-bloco">
+        <h2>Compartilhe seu testemunho</h2>
+      
+        <label for="nomeTestemunho">Nome (opcional)</label><br>
+        <input id="nomeTestemunho" placeholder="Seu nome (ou deixe em branco)"><br><br>
+      
+        <label for="textoTestemunho">Testemunho</label><br>
+        <textarea id="textoTestemunho" placeholder="Escreva seu testemunho..." rows="5"></textarea><br>
+      
+        <button id="btnEnviarTest">Enviar testemunho</button>
+      
+        <h3 id="testemunhoA">Testemunhos aprovados</h3>
+        <div id="listaTestemunhos"></div>
+      </section>
+
+
     <p id="oracao"><strong>"Pai nosso, que estás no céu, que todos reconheçam que o teu nome é santo. Venha o teu Reino. Que a tua vontade seja feita aqui na terra como no céu! Dá-nos hoje o alimento que precisamos, perdoa as nossas ofensas como também nós perdoamos as pessoas que nos ofenderam. E não deixes que sejamos tentados, mas livras-nos do mal. Pois teu é o Reino, e o poder e a glória para sempre. Amém"</strong></p>
 
 
@@ -123,4 +138,92 @@
         window.addEventListener('load', revelarScroll)
     </script>
 </body>
+<script type="module">
+  // 1️⃣ Importar módulos Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getFirestore,
+    collection,
+    addDoc,
+    serverTimestamp,
+    query,
+    where,
+    orderBy,
+    onSnapshot,
+    limit
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  // 2️⃣ Configuração do seu projeto Firebase (troque pelos seus dados)
+  const firebaseConfig = {
+    apiKey: "SUA_API_KEY",
+    authDomain: "SEU-PROJETO.firebaseapp.com",
+    projectId: "SEU-PROJETO",
+    storageBucket: "SEU-PROJETO.appspot.com",
+    messagingSenderId: "SEU_ID",
+    appId: "SEU_APP_ID"
+  };
+
+  // 3️⃣ Inicializar Firebase e Firestore
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const testemunhosCol = collection(db, "testemunhos");
+
+  // 4️⃣ Função para enviar testemunho
+  async function enviarTestemunho() {
+    const nomeEl = document.getElementById('nomeTestemunho');
+    const textoEl = document.getElementById('textoTestemunho');
+    const nome = (nomeEl.value || "Anônimo").trim();
+    const texto = (textoEl.value || "").trim();
+
+    if (!texto) {
+      alert("Escreva algo antes de enviar.");
+      return;
+    }
+
+    if (texto.length > 1200) {
+      alert("Testemunho muito longo. Use até 1200 caracteres.");
+      return;
+    }
+
+    try {
+      await addDoc(testemunhosCol, {
+        nome,
+        texto,
+        aprovado: false,   // só admin aprova
+        criadoEm: serverTimestamp()
+      });
+
+      textoEl.value = "";
+      alert("Obrigado! Seu testemunho foi enviado para moderação.");
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao enviar. Tente novamente mais tarde.");
+    }
+  }
+
+  document.getElementById('btnEnviarTest').addEventListener('click', enviarTestemunho);
+
+  // 5️⃣ Mostrar testemunhos aprovados em tempo real
+  const q = query(testemunhosCol, where('aprovado','==', true), orderBy('criadoEm','desc'), limit(50));
+
+  onSnapshot(q, (snapshot) => {
+    const lista = document.getElementById('listaTestemunhos');
+    lista.innerHTML = "";
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const bloco = document.createElement('div');
+      bloco.className = 'testemunho-item';
+      const nomeEl = document.createElement('strong');
+      nomeEl.textContent = data.nome || 'Anônimo';
+      const p = document.createElement('p');
+      p.textContent = data.texto;
+      bloco.appendChild(nomeEl);
+      bloco.appendChild(p);
+      lista.appendChild(bloco);
+    });
+  });
+
+  // opcional para console
+  window.enviarTestemunho = enviarTestemunho;
+</script>
 </html>

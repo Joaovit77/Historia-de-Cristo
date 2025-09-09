@@ -170,7 +170,62 @@ p#oracao{
 }
 
 
+section#testemunhos-bloco{
+    max-width: 740px;
+    background-color: rgba(17, 0, 255, 0.678);
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.24);
+    border-radius: 5px;
+}
 
+section#testemunhos-bloco h2{
+    margin-bottom: 10px;
+}
+
+
+section label{
+    padding: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+section input#nomeTestemunho{
+    background-color: white;
+    margin-top: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 2px;
+}
+
+textarea{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 400px;
+    height: 200px;
+}
+
+
+button#btnEnviarTest{
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: goldenrod;
+    color: white;
+    font-size: 1.1rem;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.281);
+    margin-bottom: 10px;
+}
+
+h3#testemunhoA{
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin: 10px;
+}
 
 p#oracao:hover{
     transform: translateY(-5px);
