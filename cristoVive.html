@@ -68,7 +68,7 @@
 
     <div class="doacao">
         <p>🙏 Gostou do conteúdo? Contribua-me com um café ☕</p>
-        <p><strong>PIX:</strong>125.856.399-16</p>
+        <p><strong>PIX:</strong> 125.856.399-16</p>
       </div>
     <footer>
         <p>© 2025 João Vitor. Site baseado na Bíblia.</p>
@@ -76,6 +76,29 @@
 
 
     <script>
+        function throttle(fn, wait){
+            let isThrottled = false, args, context;
+
+            return function(){
+                if (isThrottled){
+                    args = arguments;
+                    context = this;
+                    return;
+                }
+
+                fn.apply(this, arguments);
+                isThrottled = true;
+
+                setTimeout(() => {
+                    isThrottled = false;
+                    if (args){
+                        fn.apply(context, args);
+                        args = context = null;
+                    }
+                }, wait)
+
+            }
+        }
         function revelarScroll(){
             const elementos = document.querySelectorAll('.reveal');
             
@@ -84,7 +107,7 @@
                 const alturaTela = window.innerHeight;
 
                 if (topo < alturaTela * 0.8){
-                    el.style.transitionDelay = `${index * 0.2}s`;
+                    el.style.transitionDelay = `${index * 0.1}s`;
                     el.classList.add('active')
                 } else{
                     el.classList.remove('active')
@@ -93,7 +116,9 @@
 
         }
 
-        window.addEventListener('scroll', revelarScroll);
+        const revelarScrollThrottle = throttle(revelarScroll, 100)
+
+        window.addEventListener('scroll', revelarScrollThrottle);
         window.addEventListener('load', revelarScroll)
     </script>
 </body>
