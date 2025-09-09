@@ -8,6 +8,37 @@
     padding: 0;
 }
 
+header{
+    display: block;
+    width: 100%;
+    background:brown url('../imagens/SANTA-CEIA.jpg') no-repeat center center;
+    background-size: cover;
+    min-height: 230px;
+    text-align: center;
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.37);
+}
+
+header h1{ 
+    font-weight: 300;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.425);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.432);
+    margin: auto;
+    display: block;
+}
+
+header span{
+    color: rgba(255, 0, 0, 0.699);
+    text-shadow: 2px 2px 3px rgba(255, 0, 0, 0.658);
+    display: inline-block;
+}
+
+header span:hover{
+    transform: rotate(3deg) scale(2);
+    transition: transform 0.5s ease;
+    cursor: pointer;
+}
+
 html{
     scroll-behavior: smooth;
 }
@@ -29,40 +60,6 @@ body{
     to{
         opacity: 1;
     }
-}
-
-
-header{
-    display: block;
-    width: 100%;
-    background:brown url('../imagens/SANTA-CEIA.jpg') no-repeat center center;
-    background-size: cover;
-    min-height: 230px;
-    text-align: center;
-    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.37);
-}
-
-header h1{
-    padding-top:10px;
-    padding-bottom: 10px;
-    font-weight: 300;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.425);
-    color: white;
-    background-color: rgba(0, 0, 0, 0.432);
-    margin: auto;
-    display: block;
-}
-
-header span{
-    color: rgba(255, 0, 0, 0.699);
-    text-shadow: 2px 2px 3px rgba(255, 0, 0, 0.658);
-    display: inline-block;
-}
-
-header span:hover{
-    transform: rotate(3deg) scale(2);
-    transition: transform 0.5s ease;
-    cursor: pointer;
 }
 
 
