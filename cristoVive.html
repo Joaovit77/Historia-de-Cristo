@@ -101,10 +101,10 @@
         }
         function revelarScroll(){
             const elementos = document.querySelectorAll('.reveal');
-            
+            const alturaTela = window.innerHeight;
             elementos.forEach((el, index) => {
                 const topo = el.getBoundingClientRect().top;
-                const alturaTela = window.innerHeight;
+                
 
                 if (topo < alturaTela * 0.8){
                     el.style.transitionDelay = `${index * 0.1}s`;
