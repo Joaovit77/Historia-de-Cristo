@@ -1,0 +1,235 @@
+@charset "UTF-8";
+
+
+*{
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: goldenrod;
+    background-attachment: fixed;
+    animation: fadeIn 1s ease forwards;
+    opacity: 0;
+    overflow-x: hidden;
+}
+
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
+
+header{
+    display: block;
+    width: 100%;
+    background:brown url('../imagens/SANTA-CEIA.jpg') no-repeat center center;
+    background-size: cover;
+    min-height: 230px;
+    text-align: center;
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.37);
+}
+
+header h1{
+    padding-top:10px;
+    padding-bottom: 10px;
+    font-weight: 300;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.425);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.432);
+    margin: auto;
+    display: block;
+}
+
+header span{
+    color: rgba(255, 0, 0, 0.699);
+    text-shadow: 2px 2px 3px rgba(255, 0, 0, 0.658);
+    display: inline-block;
+}
+
+header span:hover{
+    transform: rotate(3deg) scale(2);
+    transition: transform 0.5s ease;
+    cursor: pointer;
+}
+
+
+
+
+main{
+    display: block;
+    background-image: linear-gradient(135deg, #deb887, #d2b48c );
+    margin: 0px auto 30px auto;
+    max-width: 740px;
+    border: 1px solid rgba(0, 0, 0, 0.356);
+    transition: width 0.7s;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+main h1{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 300;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.363);
+    padding-top: 10px;
+}
+
+section{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+section p{
+    text-align: center justify;
+    text-indent: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    line-height: 1.3rem;
+    background-color: wheat;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.219);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.452);
+    width: 100%;
+    flex-basis: 120px;
+    border-radius: 5px;
+}
+
+section p:hover{
+    cursor: pointer;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.534);
+}
+
+section h2{
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.253);
+    display: block;
+    margin: auto;
+}
+
+
+h1, h2{
+    animation: zoomIn 1.2s ease-in-out;
+}
+
+@keyframes zoomIn{
+    from{
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.reveal{
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s ease;
+    
+}
+.reveal[data-dir="left"]{transform: translateX(-50px);}
+
+.reveal[data-dir="right"]{transform: translateX(50px);}
+
+.reveal.active{
+    opacity: 1;
+    transform: translateX(0);
+}
+
+p#oracao{
+    width: 80%;
+    padding: 10px;
+    margin: 10px auto;
+    text-align: center;
+    line-height: 1.4rem;
+    background-color: rgba(245, 222, 179, 0.589);
+    border: 2px dashed black;
+    transition: width 0.8s ease;
+    border-right:3px solid black;
+    animation: blink 0.8s infinite;
+}
+
+
+@keyframes blink{
+    from, to{border-color: transparent;}
+    50%{border-color: black;}
+}
+
+
+
+
+p#oracao:hover{
+    transform: translateY(-5px);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.562);
+    transition: transform 0.5s ease;
+    cursor: pointer;
+}
+
+
+.doacao {
+    margin: 20px auto;
+    padding: 15px;
+    max-width: 500px;
+    text-align: center;
+    background: rgba(255, 217, 0, 0.582);
+    border: 2px dashed goldenrod;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.doacao:hover {
+    transform: scale(1.05);
+}
+
+footer{
+    background-color: wheat;
+    text-align: center;
+    height: 50px;
+}
+
+footer p {
+    padding-top: 15px;
+}
+
+@media screen and (min-width: 800px) {
+    header{
+        background-size: contain, 15%;
+        min-height: 350px;
+    }
+
+    header h1, header span{
+        font-size: 2.5rem;
+    }
+    section h1{
+        display: block;
+    }
+
+    section{
+        flex-flow: row wrap;
+    }
+
+    section p{
+        flex: auto;
+        margin: 10px;
+        font-size:1.1rem;
+    }
+}
