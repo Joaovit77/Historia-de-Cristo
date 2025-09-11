@@ -1,3 +1,37 @@
+function atualizarRelogio(){
+    const agora = new Date();
+    let horas = agora.getHours();
+    let minutos = agora.getMinutes();
+    let segundos = agora.getSeconds(); 
+
+    horas = horas < 10 ? '0' + horas : horas;
+    minutos = minutos < 10 ? '0' + minutos : minutos;
+    segundos = segundos < 10 ? '0' + segundos : segundos;
+
+
+    const dia =  agora.getDate() < 10 ? '0' + agora.getDate() : agora.getDate();
+    let mes = agora.getMonth() + 1;
+    mes = mes < 10 ? '0' + mes : mes;
+    const ano = agora.getFullYear();
+
+
+    const horaFormatada = `${horas}:${minutos}:${segundos}`;
+    const dataFormatada = `${dia}/${mes}/${ano}`;
+
+    
+
+
+    document.getElementById('hora').textContent = horaFormatada;
+    document.getElementById('data').textContent = dataFormatada
+}
+
+setInterval(atualizarRelogio, 1000)
+atualizarRelogio()
+
+
+
+
+
 function throttle(fn, wait){
     let isThrottled = false, args, context;
 

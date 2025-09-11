@@ -279,6 +279,29 @@ p#oracao:hover{
     transform: scale(1.05);
 }
 
+div#relogio{
+    background-color: rgba(0, 0, 0, 0.534);
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.37);
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.514);
+    display: block;
+    margin: 20px auto;
+    max-width: 250px;
+    color: white;
+    font-size: 1.5rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px dashed black;
+}
+
+div#relogio:hover{
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+    box-shadow: 3px 5px 13px rgba(0, 0, 0, 0.466);
+}
+
 footer{
     background-color: wheat;
     text-align: center;
