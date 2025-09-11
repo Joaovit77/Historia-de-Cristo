@@ -9,14 +9,21 @@
 }
 
 header{
-    display: block;
-    width: 100%;
-    background:brown url('../imagens/SANTA-CEIA.jpg') no-repeat center center;
+    background: url('../imagens/SANTA-CEIA.jpg') no-repeat center center;
     background-size: cover;
     min-height: 230px;
     text-align: center;
     box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.37);
+    position: relative;
 }
+
+header::after{
+    content: '';
+    inset: 0;
+    background: rgba(0, 0, 0, 0.466);
+    position: absolute;
+}
+
 
 header h1{ 
     font-weight: 300;
@@ -44,7 +51,7 @@ html{
 }
 
 body{
-    background-color: goldenrod;
+    background:rgba(105, 105, 105, 0.479);
     background-attachment: fixed;
     animation: fadeIn 1s ease forwards;
     opacity: 0;
@@ -67,7 +74,7 @@ body{
 
 main{
     display: block;
-    background-image: linear-gradient(135deg, #deb887, #d2b48c );
+    background-color: #fdf6e3;
     margin: 0px auto 30px auto;
     max-width: 740px;
     border: 1px solid rgba(0, 0, 0, 0.356);
@@ -88,18 +95,20 @@ section{
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.534);
+    padding: 20px;
 }
 
 section p{
-    text-align: center justify;
+    text-align: center ;
     text-indent: 15px;
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
-    line-height: 1.3rem;
-    background-color: wheat;
+    line-height: 1.8rem;
+    background-color: rgba(0, 0, 0, 0.178);
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.219);
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.452);
+    box-shadow: 1px 4px 12px rgba(0, 0, 0, 0.452);
     width: 100%;
     flex-basis: 120px;
     border-radius: 5px;
@@ -121,6 +130,7 @@ section h2{
 
 h1, h2{
     animation: zoomIn 1.2s ease-in-out;
+    font-family: 'Merriweather', serif;
 }
 
 @keyframes zoomIn{
@@ -150,18 +160,7 @@ h1, h2{
     transform: translateX(0);
 }
 
-p#oracao{
-    width: 80%;
-    padding: 10px;
-    margin: 10px auto;
-    text-align: center;
-    line-height: 1.4rem;
-    background-color: rgba(245, 222, 179, 0.589);
-    border: 2px dashed black;
-    transition: width 0.8s ease;
-    border-right:3px solid black;
-    animation: blink 0.8s infinite;
-}
+
 
 
 @keyframes blink{
@@ -172,7 +171,7 @@ p#oracao{
 
 section#testemunhos-bloco{
     max-width: 740px;
-    background-color: rgba(17, 0, 255, 0.678);
+    background-color:  goldenrod;
     display: block;
     margin: auto;
     text-align: center;
@@ -195,7 +194,8 @@ section label{
 }
 
 section input#nomeTestemunho{
-    background-color: white;
+    background-color:white;
+    max-width: 300px;
     margin-top: 5px;
     padding: 5px;
     border: none;
@@ -214,11 +214,18 @@ button#btnEnviarTest{
     padding: 10px;
     border: none;
     border-radius: 3px;
-    background-color: goldenrod;
+    background-color: #4caf50;
     color: white;
     font-size: 1.1rem;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.281);
     margin-bottom: 10px;
+    cursor: pointer;
+}
+
+button#btnEnviarTest:hover{
+    transform: scale(1.1);
+    background-color: rgba(255, 217, 0, 0.651);
+    transition: transform 0.3s ease;
 }
 
 h3#testemunhoA{
@@ -228,6 +235,23 @@ h3#testemunhoA{
 }
 
 
+div#listaTestemunhos p{
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.452);
+    border: 1px solid black;
+}
+
+p#oracao{
+    width: 80%;
+    padding: 10px;
+    margin: 10px auto;
+    text-align: center;
+    line-height: 1.4rem;
+    background-color: rgba(245, 222, 179, 0.589);
+    border: 2px dashed black;
+    transition: width 0.8s ease;
+    border-right:3px solid black;
+    animation: blink 0.8s infinite;
+}
 
 
 p#oracao:hover{
@@ -286,5 +310,11 @@ footer p {
         flex: auto;
         margin: 10px;
         font-size:1.1rem;
+    }
+
+
+    div#listaTestemunhos{
+        width: 70%;
+        margin: auto;
     }
 }
