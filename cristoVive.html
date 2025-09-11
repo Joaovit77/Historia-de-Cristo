@@ -61,7 +61,15 @@
             <p class="reveal" data-dir="left"><strong>"Com a pá que tem na mão ele vai separar o trigo da palha" → A pá (ou pá de joeirar) era usada para jogar o trigo pro alto, o vento levava a palha (leve, sem valor) e o grão bom caía no chão. Aqui é uma metáfora de julgamento de Deus, onde ele vai separar os verdadeiros dos falsos.</strong></p>
 
             <p class="reveal" data-dir="right"><strong>"Guardará o trigo no depósito" → O trigo representa as pessoas que seguem a vontade de Deus (os justos) E o "depósito" simboliza o céu, a presença de Deus "Mas queimará a palha no fogo que nunca se apaga" → A palha representa as pessoas que rejeitam a Deus, sem futos, vazias como palha. E o "fogo eterno" é uma referência clara ao inferno, a condenação final. </strong></p>
+            <h3>O batismo de Jesus</h3>
+            <p class="reveal" data-dir="left">João Batista foi importante para vinda de Jesus, preparando o caminho e o coração das pessoas para a chegada do Messias, através das suas pregações e batismo. Apesar de sua missão ele permaneceu humilde e reconheceu que Jesus era filho de Deus. Em um certo dia Jesus saiu da Galiléia até o Rio Jordão a fim de ser batizado por João Batista. Mas João tentou convencê-lo a mudar de ideia, afirmando - <strong>Eu é que preciso ser batizado por você, e você está querendo que eu o batize?</strong> <br>Mas Jesus respondeu:
+            - <strong>Deixe que seja assim agora, pois é dessa maneira que faremos tudo que Deus quer.</strong></p>
+
+            <p class="reveal" data-dir="right">E assim foi feito, João batizou Jesus e logo que o filho de Deus foi batizado, o céu se abriu, e Jesus viu o Espirito de Deus descer como uma pomba e pousar sobre ele. E do Céu veio uma voz que disse: - <strong>Este é o meu filho querido, que me dá muita alegria.</strong></p>
+
+            <p class="reveal" data-dir="left">Reflexão: <strong>Essa passagem nos trás um sentimento de paz e inspiração, Deus demonstrou seu amor e orgulho por Jesus assim como um pai se alegra quando um filho alcança uma grande conquista, mas nada se compara ao amor perfeito e eterno de Deus por seu filho - e também por cada um de nós</strong></p>
         </section>
+        <h2>A tentação de Jesus no deserto</h2>
     </main>
     <section id="testemunhos-bloco">
         <h2>Compartilhe seu testemunho</h2>
@@ -90,140 +98,7 @@
         <p>© 2025 João Vitor. Site baseado na Bíblia.</p>
     </footer>
 
-
-    <script>
-        function throttle(fn, wait){
-            let isThrottled = false, args, context;
-
-            return function(){
-                if (isThrottled){
-                    args = arguments;
-                    context = this;
-                    return;
-                }
-
-                fn.apply(this, arguments);
-                isThrottled = true;
-
-                setTimeout(() => {
-                    isThrottled = false;
-                    if (args){
-                        fn.apply(context, args);
-                        args = context = null;
-                    }
-                }, wait)
-
-            }
-        }
-        function revelarScroll(){
-            const elementos = document.querySelectorAll('.reveal');
-            const alturaTela = window.innerHeight;
-            elementos.forEach((el, index) => {
-                const topo = el.getBoundingClientRect().top;
-                
-
-                if (topo < alturaTela * 0.8){
-                    el.style.transitionDelay = `${index * 0.1}s`;
-                    el.classList.add('active')
-                } else{
-                    el.classList.remove('active')
-                }
-            });
-
-        }
-
-        const revelarScrollThrottle = throttle(revelarScroll, 200)
-
-        window.addEventListener('scroll', revelarScrollThrottle);
-        window.addEventListener('load', revelarScroll)
-    </script>
+    <script src="script.js"></script>
+    <script type="module" src="firebase.js"></script>
 </body>
-<script type="module">
-  // 1️⃣ Importar módulos Firebase
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import {
-    getFirestore,
-    collection,
-    addDoc,
-    serverTimestamp,
-    query,
-    where,
-    orderBy,
-    onSnapshot,
-    limit
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-  // 2️⃣ Configuração do seu projeto Firebase (troque pelos seus dados)
-  const firebaseConfig = {
-    apiKey: "AIzaSyDXxa9MS3I6gaWI2uRM9pp6R1QwnUxE3lU",
-    authDomain: "historia-de-cristo-4567b.firebaseapp.com",
-    projectId: "historia-de-cristo-4567b",
-    storageBucket: "historia-de-cristo-4567b.appspot.com",
-    messagingSenderId: "669792972416",
-    appId: "1:669792972416:web:bdcdc6dc034abceed24065"
-  };
-
-  // 3️⃣ Inicializar Firebase e Firestore
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  const testemunhosCol = collection(db, "testemunhos");
-
-  // 4️⃣ Função para enviar testemunho
-  async function enviarTestemunho() {
-    const nomeEl = document.getElementById('nomeTestemunho');
-    const textoEl = document.getElementById('textoTestemunho');
-    const nome = (nomeEl.value || "Anônimo").trim();
-    const texto = (textoEl.value || "").trim();
-
-    if (!texto) {
-      alert("Escreva algo antes de enviar.");
-      return;
-    }
-
-    if (texto.length > 1200) {
-      alert("Testemunho muito longo. Use até 1200 caracteres.");
-      return;
-    }
-
-    try {
-      await addDoc(testemunhosCol, {
-        nome,
-        texto,
-        aprovado: false,   // só admin aprova
-        criadoEm: serverTimestamp()
-      });
-
-      textoEl.value = "";
-      alert("Obrigado! Seu testemunho foi enviado para moderação.");
-    } catch (err) {
-      console.error(err);
-      alert("Erro ao enviar. Tente novamente mais tarde.");
-    }
-  }
-
-  document.getElementById('btnEnviarTest').addEventListener('click', enviarTestemunho);
-
-  // 5️⃣ Mostrar testemunhos aprovados em tempo real
-  const q = query(testemunhosCol, where('aprovado','==', true), orderBy('criadoEm','desc'), limit(50));
-
-  onSnapshot(q, (snapshot) => {
-    const lista = document.getElementById('listaTestemunhos');
-    lista.innerHTML = "";
-    snapshot.forEach(doc => {
-      const data = doc.data();
-      const bloco = document.createElement('div');
-      bloco.className = 'testemunho-item';
-      const nomeEl = document.createElement('strong');
-      nomeEl.textContent = data.nome || 'Anônimo';
-      const p = document.createElement('p');
-      p.textContent = data.texto;
-      bloco.appendChild(nomeEl);
-      bloco.appendChild(p);
-      lista.appendChild(bloco);
-    });
-  });
-
-  // opcional para console
-  window.enviarTestemunho = enviarTestemunho;
-</script>
 </html>

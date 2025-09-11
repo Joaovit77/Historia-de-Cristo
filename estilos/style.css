@@ -32,6 +32,8 @@ header h1{
     background-color: rgba(0, 0, 0, 0.432);
     margin: auto;
     display: block;
+    font-family: 'Merriweather', serif;
+    font-size: 2.5rem;
 }
 
 header span{
@@ -119,18 +121,16 @@ section p:hover{
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.534);
 }
 
-section h2{
+
+h1, h2, h3{
+    animation: zoomIn 1.2s ease-in-out;
+    font-family: 'Merriweather', serif;
     font-size: 1.5rem;
     font-weight: 400;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.253);
     display: block;
     margin: auto;
-}
-
-
-h1, h2{
-    animation: zoomIn 1.2s ease-in-out;
-    font-family: 'Merriweather', serif;
+    text-align: center;
 }
 
 @keyframes zoomIn{
