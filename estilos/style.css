@@ -342,13 +342,13 @@ footer p {
         flex-flow: row wrap;
     }
 
-    section p{
+    section p, div.reveal{
         flex: auto;
         margin: 10px;
         font-size:1.1rem;
     }
 
-
+    
     div#listaTestemunhos{
         width: 70%;
         margin: auto;
